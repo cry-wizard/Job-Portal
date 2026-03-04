@@ -23,7 +23,8 @@ const Login = () => {
       console.log(res.data);
 
       localStorage.setItem("token", res.data.token);
-
+      localStorage.setItem("role", res.data.user.role);
+      localStorage.setItem("name", res.data.user.name);
       alert("Login successful");
       window.location.href = "/home";
     } catch (error) {
@@ -33,15 +34,12 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      
       <div className="w-full max-w-md bg-white shadow-lg rounded-xl p-8">
-        
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Login to Job Portal
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          
           {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-600">
@@ -81,7 +79,6 @@ const Login = () => {
           >
             Login
           </button>
-
         </form>
 
         {/* Register Link */}
@@ -94,7 +91,6 @@ const Login = () => {
             Register
           </Link>
         </p>
-
       </div>
     </div>
   );
