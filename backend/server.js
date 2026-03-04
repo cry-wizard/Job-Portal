@@ -6,6 +6,7 @@ import authRoute from './routes/auth.route.js'
 import { protect } from './middleware/auth.middleware.js';
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
+import { startKeepAlive } from "./utils/keepAlive.js";
 
 
 const app = express();
@@ -30,12 +31,8 @@ app.use("/api/applications", applicationRoute);
 connectDB();
 
 
-app.get("/api/protected", protect, (req, res) => {
-  res.json({
-    message: "Protected route accessed",
-    user: req.user,
-  });
-});
+// Keeping Route Alive
+startKeepAlive();
 
 
 app.listen(PORT, () => {
