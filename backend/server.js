@@ -4,7 +4,6 @@ import 'dotenv/config';
 import connectDB from './config/db.js';
 import healthRoute from './routes/health.route.js'
 import authRoute from './routes/auth.route.js'
-import { protect } from './middleware/auth.middleware.js';
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import { startKeepAlive } from "./utils/keepAlive.js";
@@ -15,7 +14,7 @@ const app = express();
 // Enabling CORS
 const allowedOrigins = [
   "http://localhost:5173",              
-  process.env.FRONTEND_URL              
+  "https://jobportala.netlify.app"              
 ].filter(Boolean);
 
 

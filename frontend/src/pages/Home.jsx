@@ -32,29 +32,30 @@ const Home = () => {
   };
 
   const handleApply = async (jobId) => {
-    try {
-      const formData = new FormData();
+  try {
+    const formData = new FormData();
 
-      formData.append("jobId", jobId);
-      formData.append("resume", resume);
-      formData.append("coverLetter", coverLetter);
+    formData.append("jobId", jobId);
+    formData.append("resume", resume);
+    formData.append("coverLetter", coverLetter);
 
-      await API.post("/applications/apply", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+    await API.post("/applications/apply", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
 
-      alert("Application submitted!");
+    alert("Application submitted!");
 
-      setActiveJob(null);
-      setResume(null);
-      setCoverLetter("");
-    } catch (error) {
-      alert(error.response?.data?.message || "Failed to apply");
-    }
-  };
+    setActiveJob(null);
+    setResume(null);
+    setCoverLetter("");
+
+  } catch (error) {
+    console.error(error);
+    alert(error.response?.data?.message || "Failed to apply");
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-100">

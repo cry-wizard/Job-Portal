@@ -7,6 +7,12 @@ export const applyToJob = async (req, res) => {
   try {
     const { jobId, coverLetter } = req.body;
 
+    if (!req.file) {
+      return res.status(400).json({
+        message: "Resume is required",
+      });
+    }
+
     const job = await Job.findById(jobId);
     if (!job) {
       return res.status(404).json({ message: "Job not found" });
@@ -33,6 +39,7 @@ export const applyToJob = async (req, res) => {
       application,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
